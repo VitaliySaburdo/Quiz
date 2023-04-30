@@ -30,3 +30,50 @@ const questions = [
 		correct: 2,
 	},
 ];
+
+const headerContainer = document.querySelector('#header');
+const questionList = document.querySelector('#list');
+const submitBtn = document.querySelector('#submit');
+
+
+let score = 0;
+let questionIdx = 0;
+
+submitBtn.onclick = checkAnswer;
+
+showQuestion();
+// clearPage();
+
+function clearPage() {
+    headerContainer.innerHTML = ''; 
+    questionList.innerHTML = ''; 
+}
+
+function showQuestion() {
+
+    const headerTemple = `<h2 class="title">%title%</h2>`;
+    const title = headerTemple.replace('%title%', questions[questionIdx].question);
+
+    headerContainer.innerHTML = title;
+
+    const answersText = questions[questionIdx].answers;
+ 
+    for (const answerText of answersText) {
+        const questionTemple = 
+        `<li>
+          <label>
+            <input type="radio" class="answer" name="answer" />
+            <span>%answer%</span>
+          </label>
+        </li>`;
+        const answerHtml = questionTemple.replace('%answer%', answerText);
+
+        questionList.innerHTML += answerHtml;
+    }
+
+}
+
+
+function checkAnswer() {
+    
+}
